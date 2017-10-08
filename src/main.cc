@@ -1,15 +1,12 @@
 #include <iostream>
 #include "maze.h"
+#include "solver.h"
 
 int main (int argc, char *argv[]) {
-	int n, m;
-
-	cout << "Size: ";
-	cin >> n >> m;
-
-	Maze maze (n, m);
-
-	maze.print ();
-
+	Maze *maze = Maze::fromFile("in/5.in");
+	Solver s;
+	s.informedSearch (*maze);
+	maze->print ();
+	delete maze;
 	return 0;
 }

@@ -2,7 +2,7 @@ EXEC=build/main
 SRC=src/*.cc
 INC=-I./header
 EXECARG=
-CPPFLAGS=-Wall -std=c++11
+CPPFLAGS=-Wall -std=c++11 -g
 
 all: clean compile
 
