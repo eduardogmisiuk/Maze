@@ -27,7 +27,7 @@ bool Cell::operator!= (const Cell& c1) {
  * Overrides () of Cell.
  */
 bool Comparison::operator() (Cell &c1, Cell &c2) {
-	return (c1.FC+c1.FA < c2.FC+c2.FA);
+	return (c1.FC+c1.FA > c2.FC+c2.FA);
 }
 
 /*
