@@ -29,10 +29,23 @@ void Maze::print () {
 
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
-			cout << (char) maze[i][j];
+			switch(maze[i][j]) {
+				case WALL:
+					cout << WALL_COLOR << WALL_PRINTCHAR;
+					break;
+				case PATH:
+					cout << PATH_COLOR << PATH_PRINTCHAR;
+					break;
+				default:
+					cout << DEFAULT_COLOR;
+					cout << (char) maze[i][j];
+					break;
+			}
 		}
 		cout << endl;
 	}
+
+	cout << DEFAULT_COLOR;
 }
 
 int Maze::operator() (int i, int j) {
@@ -41,6 +54,14 @@ int Maze::operator() (int i, int j) {
 
 int Maze::get(int r, int c) {
 	return maze[r][c];
+}
+
+int Maze::getn() {
+	return this->n;
+}
+
+int Maze::getm() {
+	return this->m;
 }
 
 void Maze::set(int r, int c, int v) {
@@ -69,7 +90,7 @@ Maze* Maze::fromFile(string filename) {
 
 	Maze* maze = new Maze(rows, cols, make_tuple(startrow, startcol), make_tuple(endrow, endcol));
 
-	while (file.get() != (int)'*') ;
+	while (file.get() != WALL) ;
 	file.unget();
 
 	for (int i = 0; i < rows; i++) {
