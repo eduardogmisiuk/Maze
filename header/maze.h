@@ -62,6 +62,7 @@ public:
 	// Setters
 	void set(int r, int c, int v);
 
+	void clear();
 
 	/*
 	 * Read the maze from the file.

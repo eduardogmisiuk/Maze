@@ -29,6 +29,7 @@ void Maze::print () {
 
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
+#ifndef NO_COLORS
 			switch(maze[i][j]) {
 				case WALL:
 					cout << WALL_COLOR << WALL_PRINTCHAR;
@@ -41,6 +42,9 @@ void Maze::print () {
 					cout << (char) maze[i][j];
 					break;
 			}
+#else
+			cout << (char) maze[i][j];
+#endif
 		}
 		cout << endl;
 	}
@@ -78,6 +82,12 @@ void Maze::generate () {
 
 Maze* Maze::fromFile(string filename) {
 	ifstream file(filename, ifstream::in);
+
+	if (!file.is_open()) {
+		cout << "Não pode abrir o arquivo " << filename << endl;
+		exit(EXIT_FAILURE);
+	}
+
 	int rows, cols, startrow, startcol, endrow, endcol;
 	int val;
 
@@ -136,4 +146,13 @@ vector< tuple<int, int> > Maze::getAdjacentCells (int i, int j, int n, int m) {
 	}
 
 	return v;
+}
+
+void Maze::clear() {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (maze[i][j] == PATH)
+				maze[i][j] = WAY;
+		}
+	}
 }
