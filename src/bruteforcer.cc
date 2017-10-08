@@ -31,7 +31,7 @@ bool Bruteforcer::bruteforce(Maze& maze) {
     int startrow, startcol;
     tuple<int, int> start = maze.getStart();
 
-    cost = 0;
+    cost = -1;
 
     startrow = get<0>(start);
     startcol = get<1>(start);
