@@ -7,9 +7,15 @@
 
 using namespace std;
 
-#define WALL (int)'*'
+#define WALL (int)'#'
 #define WAY (int)' '  // Every non-wall cell
-#define PATH (int)'.' // Every non-wall cell of the solution
+#define PATH (int)'*' // Every non-wall cell of the solution
+
+#define WALL_PRINTCHAR ' '
+#define WALL_COLOR "\x1B[37;47m"
+#define PATH_PRINTCHAR ' '
+#define PATH_COLOR "\x1B[34;44m"
+#define DEFAULT_COLOR "\x1B[37;40m"
 
 class Maze {
 private:
