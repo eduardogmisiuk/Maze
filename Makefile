@@ -4,10 +4,14 @@ INC=-I./header
 EXECARG=
 CPPFLAGS=-Wall -std=c++11 -g
 
-all: clean compile
+all: compile
+
+nocolors: CPPFLAGS += -DNO_COLORS
+nocolors: all
 
 clean:
 		find -name "*~" -exec rm -rf {} \;
+		rm -rf $(EXEC)
 
 compile:
 		g++ -o $(EXEC) $(SRC) $(INC) $(CPPFLAGS)
