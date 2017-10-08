@@ -43,6 +43,14 @@ int Maze::get(int r, int c) {
 	return maze[r][c];
 }
 
+int Maze::getn () {
+	return this->n;
+}
+
+int Maze::getm () {
+	return this->m;
+}
+
 void Maze::set(int r, int c, int v) {
 	maze[r][c] = v;
 }
@@ -96,4 +104,23 @@ tuple<int, int> Maze::getStart() {
 
 tuple<int, int> Maze::getEnd() {
 	return end;
+}
+
+vector< tuple<int, int> > Maze::getAdjacentCells (int i, int j, int n, int m) {
+	vector< tuple<int, int> > v;
+
+	if (i-1 >= 0 && maze[i-1][j] == WAY) {
+		v.push_back (tuple <int, int> (i-1, j));
+	}
+	if (i+1 < n && maze[i+1][j] == WAY) {
+		v.push_back (tuple <int, int> (i+1, j));
+	}
+	if (j-1 >= 0 && maze[i][j-1] == WAY) {
+		v.push_back (tuple <int, int> (i, j-1));
+	}
+	if (j+1 < m && maze[i][j+1] == WAY) {
+		v.push_back (tuple <int, int> (i, j+1));
+	}
+
+	return v;
 }

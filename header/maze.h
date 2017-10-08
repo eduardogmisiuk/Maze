@@ -3,6 +3,7 @@
 
 #include <string>
 #include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -37,12 +38,15 @@ public:
 	int operator() (int i, int j);
 
 	int get(int r, int c);
+	int getn ();
+	int getm ();
 	void set(int r, int c, int v);
 
 	tuple<int, int> getStart();
 	tuple<int, int> getEnd();
 
 	static Maze* fromFile(string filename);
+	vector< tuple<int, int> > getAdjacentCells (int i, int j, int n, int m);
 };
 
 #endif
