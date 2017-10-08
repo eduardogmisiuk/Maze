@@ -1,11 +1,14 @@
 #ifndef _MAZE_H_
 #define _MAZE_H_
 
+#include <string>
+#include <tuple>
+
 using namespace std;
 
-#define WALL '*'
-#define WAY ' '  // Every non-wall cell
-#define PATH '.' // Every non-wall cell of the solution
+#define WALL (int)'*'
+#define WAY (int)' '  // Every non-wall cell
+#define PATH (int)'.' // Every non-wall cell of the solution
 
 class Maze {
 private:
@@ -17,8 +20,11 @@ private:
 	 */
 	void generate ();
 
+	tuple<int, int> start;
+	tuple<int, int> end;
+
 public:
-	Maze (int n, int m);
+	Maze (int n, int m, tuple<int, int> start, tuple<int, int> end);
 	~Maze ();
 
 	/*
@@ -30,6 +36,11 @@ public:
 	 */
 	int operator() (int i, int j);
 
+	int get(int r, int c);
+	void set(int r, int c, int v);
+
+	tuple<int, int> getStart();
+	tuple<int, int> getEnd();
 };
 
 #endif
