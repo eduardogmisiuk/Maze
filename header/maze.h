@@ -7,9 +7,9 @@
 
 using namespace std;
 
-#define WALL (int)'#'
+#define WALL (int)'*'
 #define WAY (int)' '  // Every non-wall cell
-#define PATH (int)'*' // Every non-wall cell of the solution
+#define PATH (int)'.' // Every non-wall cell of the solution
 
 #define WALL_PRINTCHAR ' '
 #define WALL_COLOR "\x1B[37;47m"
@@ -27,8 +27,8 @@ private:
 	 */
 	void generate ();
 
-	tuple<int, int> start;
-	tuple<int, int> end;
+	tuple<int, int> start; // Initial position
+	tuple<int, int> end; // Destiny
 
 public:
 	Maze (int n, int m, tuple<int, int> start, tuple<int, int> end);
@@ -39,19 +39,37 @@ public:
 	 */
 	void print ();
 	/*
-	 * Operator overload to access the position (i,j) in the array.
+	 * Operator overload to access the position (i,j) in the array int **maze.
 	 */
 	int operator() (int i, int j);
 
+	// Getters
+	/*
+	 * Gets the cell at (r, c).
+	 */
 	int get(int r, int c);
+	/*
+	 * Size getters.
+	 */
 	int getn ();
 	int getm ();
-	void set(int r, int c, int v);
-
+	/*
+	 * Start/End getters.
+	 */
 	tuple<int, int> getStart();
 	tuple<int, int> getEnd();
 
+	// Setters
+	void set(int r, int c, int v);
+
+
+	/*
+	 * Read the maze from the file.
+	 */
 	static Maze* fromFile(string filename);
+	/*
+	 * Returns a vector of adjacent cells.
+	 */
 	vector< tuple<int, int> > getAdjacentCells (int i, int j, int n, int m);
 };
 

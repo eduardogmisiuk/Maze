@@ -3,7 +3,7 @@
 #include "solver.h"
 
 int main (int argc, char *argv[]) {
-	Maze *maze = Maze::fromFile("in/1.in");
+	Maze *maze = Maze::fromFile("in/5.in");
 	Solver s;
 	s.informedSearch (*maze);
 	maze->print ();
