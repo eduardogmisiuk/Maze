@@ -46,6 +46,9 @@ void Maze::print () {
 			cout << (char) maze[i][j];
 #endif
 		}
+#ifndef NO_COLORS
+	cout << DEFAULT_COLOR;
+#endif
 		cout << endl;
 	}
 
