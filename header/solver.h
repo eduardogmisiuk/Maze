@@ -25,12 +25,18 @@ public:
 	bool operator!= (const Cell& c1);
 } Cell;
 
+/*
+ * Auxiliary class to be usesd to compare cells in the priority queue.
+ */
 class Comparison {
 public:
 	Comparison ();
 	bool operator() (Cell &c1, Cell &c2);
 };
 
+/*
+ * Solver that uses A* search to find the path to the end of the maze.
+ */
 class Solver {
 private:
 	// Maze matrix

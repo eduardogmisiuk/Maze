@@ -1,6 +1,10 @@
 #include <iostream>
 #include "solver.h"
 
+Comparison::Comparison () {}
+Solver::Solver () {}
+Solver::~Solver () {}
+
 Cell& Cell::operator= (const Cell& c1) {
 	i = c1.i;
 	j = c1.j;
@@ -9,28 +13,26 @@ Cell& Cell::operator= (const Cell& c1) {
 	xa = c1.xa;
 	ya = c1.ya;
 
-	/*cout << i << " "
-		 << j << " "
-		 << FC << " "
-		 << FA << " "
-		 << xa << " "
-		 << ya << endl;*/
-
 	return *this;
 }
 
+/*
+ * Overrides != of Cell.
+ */
 bool Cell::operator!= (const Cell& c1) {
 	return ((this->i != c1.i) || (this->j != c1.j));
 }
 
-Comparison::Comparison () {}
+/*
+ * Overrides () of Cell.
+ */
 bool Comparison::operator() (Cell &c1, Cell &c2) {
 	return (c1.FC+c1.FA < c2.FC+c2.FA);
 }
 
-Solver::Solver () {}
-Solver::~Solver () {}
-
+/*
+ * A* search of the path of the maze.
+ */
 void Solver::informedSearch (Maze &maze) {
 	int n, m, i, j;
 	Cell u, v, w; // Auxiliary cells
@@ -66,9 +68,6 @@ void Solver::informedSearch (Maze &maze) {
 		Q.pop ();
 		maze.set(v.i, v.j, PATH);
 
-		/*cout << "v.i: " << v.i << " | v.j: " << v.j << endl;
-		cout << "end<0>: " << get<0>(end) << " | end<1>: " << get<1>(end) << endl;*/
-
 		// If v is not the final state
 		if (v.i != get<0>(end) || v.j != get<1>(end)) {
 			// Getting v's adjacent cells
@@ -77,17 +76,24 @@ void Solver::informedSearch (Maze &maze) {
 			for (i = 0; i < (int) adj.size (); i++) {
 				w = mm[get<0>(adj[i])][get<1>(adj[i])];
 
+				// If w is the initial node, we don't come back
+				// to it, only continue the loop
 				if (!(w != mm[get<0>(start)][get<1>(start)]))
 					continue;
+				// Updating w values
 				w.FC = v.FC + 1;
 				w.xa = v.i;
 				w.ya = v.j;
+				// If we don't copy the values we put at w to mm[][],
+				// the cell will be outdated
 				mm[get<0>(adj[i])][get<1>(adj[i])] = w;
+				// Push to the queue
 				Q.push (w);
 			}
 		}
 	}
 
+	// Removing the PATH marcation
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) if (maze(i, j) == PATH) maze.set (i, j, WAY);
 	}
@@ -98,6 +104,7 @@ void Solver::informedSearch (Maze &maze) {
 	path.push_back (tuple<int, int> (u.i, u.j));
 	maze.set(u.i, u.j, PATH);
 
+	// Marking the path from the start to the end
 	while (u != v) {
 		path.push_back (tuple <int, int> (u.xa, u.ya));
 		u = mm[u.xa][u.ya];
