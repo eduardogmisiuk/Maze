@@ -57,17 +57,17 @@ void Maze::generate () {
 
 Maze* Maze::fromFile(string filename) {
 	ifstream file(filename, ifstream::in);
-	int rows, cols, startx, starty, endx, endy;
+	int rows, cols, startrow, startcol, endrow, endcol;
 	int val;
 
 	file >> rows;
 	file >> cols;
-	file >> startx;
-	file >> starty;
-	file >> endx;
-	file >> endy;
+	file >> startrow;
+	file >> startcol;
+	file >> endrow;
+	file >> endcol;
 
-	Maze* maze = new Maze(rows, cols, make_tuple(startx, starty), make_tuple(endx, endy));
+	Maze* maze = new Maze(rows, cols, make_tuple(startrow, startcol), make_tuple(endrow, endcol));
 
 	while (file.get() != (int)'*') ;
 	file.unget();
