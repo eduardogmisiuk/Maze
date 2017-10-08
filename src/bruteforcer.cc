@@ -31,6 +31,8 @@ bool Bruteforcer::bruteforce(Maze& maze) {
     int startrow, startcol;
     tuple<int, int> start = maze.getStart();
 
+    cost = 0;
+
     startrow = get<0>(start);
     startcol = get<1>(start);
 
@@ -38,6 +40,7 @@ bool Bruteforcer::bruteforce(Maze& maze) {
 }
 
 bool Bruteforcer::findDestination(Maze& m, int row, int col) {
+    cost += 1;
     m.set(row, col, PATH);
 
     BCell currcell(row, col);
@@ -71,6 +74,11 @@ bool Bruteforcer::findDestination(Maze& m, int row, int col) {
     path.pop_back();
 
     m.set(row, col, WAY);
+    cost -= 1;
 
     return false;
+}
+
+int Bruteforcer::getCost() {
+    return cost;
 }

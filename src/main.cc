@@ -25,9 +25,11 @@ int main (int argc, char *argv[]) {
 	int mode = std::atoi(argv[2]);
 
 	if (mode == 0 || mode == 2) {
-		cout << "A*:" << endl;
 		Solver s;
 		s.informedSearch(*maze);
+		
+		cout << "A*: (custo: " << s.getCost() << ")" << endl;
+
 		maze->print();
 		cout << endl;
 	}
@@ -36,9 +38,11 @@ int main (int argc, char *argv[]) {
 		maze->clear();
 
 	if (mode == 1 || mode == 2) {
-		cout << "Busca em largura (backtracking):" << endl;
 		Bruteforcer b;
 		b.bruteforce(*maze);
+
+		cout << "Busca em largura (backtracking): (custo: " << b.getCost() << ")" << endl;
+
 		maze->print();
 		cout << endl;
 	}

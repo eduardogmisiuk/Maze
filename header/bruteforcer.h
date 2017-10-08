@@ -21,12 +21,15 @@ public:
 class Bruteforcer {
 private:
     deque<BCell> path;
+    int cost;
 
     bool findDestination(Maze& m, int r, int c);
 
 public:
     vector<BCell> getPath();
     bool bruteforce(Maze& maze);
+
+    int getCost();
 };
 
 #endif /* _BRUTEFORCER_H_ */

@@ -44,6 +44,7 @@ private:
 	priority_queue<Cell, vector<Cell>, Comparison> Q;
 	// The path from begin to end
 	vector< tuple<int, int> > path;
+	int cost;
 
 public:
 	Solver ();
@@ -54,7 +55,7 @@ public:
 	 */
 	void informedSearch (Maze &maze);
 
-	
+	int getCost();
 };
 
 #endif

@@ -101,6 +101,8 @@ void Solver::informedSearch (Maze &maze) {
 	u = mm[get<0>(end)][get<1>(end)];
 	v = mm[get<0>(start)][get<1>(start)];
 
+	cost = u.FC;
+
 	path.push_back (tuple<int, int> (u.i, u.j));
 	maze.set(u.i, u.j, PATH);
 
@@ -113,4 +115,8 @@ void Solver::informedSearch (Maze &maze) {
 
 	for (int i = 0; i < n; i++) delete mm[i];
 	delete mm;
+}
+
+int Solver::getCost() {
+	return cost;
 }
