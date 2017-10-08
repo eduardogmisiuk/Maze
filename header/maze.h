@@ -41,6 +41,8 @@ public:
 
 	tuple<int, int> getStart();
 	tuple<int, int> getEnd();
+
+	static Maze* fromFile(string filename);
 };
 
 #endif
