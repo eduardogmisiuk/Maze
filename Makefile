@@ -14,6 +14,7 @@ clean:
 		rm -rf $(EXEC)
 
 compile:
+		@mkdir -p build
 		g++ -o $(EXEC) $(SRC) $(INC) $(CPPFLAGS)
 
 run:
