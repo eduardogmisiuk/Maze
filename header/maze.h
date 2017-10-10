@@ -7,10 +7,13 @@
 
 using namespace std;
 
-#define WALL (int)'*'
+//Maze -> class that contains data from maze structure and auxiliar functions to solve
+
+#define WALL (int)'*' // Every unvisited cell
 #define WAY (int)' '  // Every non-wall cell
 #define PATH (int)'.' // Every non-wall cell of the solution
 
+//graphic interface macros
 #define WALL_PRINTCHAR ' '
 #define WALL_COLOR "\x1B[37;47m"
 #define PATH_PRINTCHAR ' '
@@ -31,6 +34,7 @@ private:
 	tuple<int, int> end; // Destiny
 
 public:
+	//constructor + destructor
 	Maze (int n, int m, tuple<int, int> start, tuple<int, int> end);
 	~Maze ();
 

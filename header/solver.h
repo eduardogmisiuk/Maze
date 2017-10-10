@@ -8,8 +8,11 @@
 
 using namespace std;
 
+//class that applies the A* heuristic to search the result of the maze
+
+//absolut value
 #define ABS(x) (((x) > 0) ? (x) : -(x))
-// Future's cost
+// Future's cost - based in manhattan's distance
 #define MANHATTAN(xi,yi,xf,yf) (ABS(xf-xi) + ABS(yf-yi))
 
 /*
@@ -26,7 +29,7 @@ public:
 } Cell;
 
 /*
- * Auxiliary class to be usesd to compare cells in the priority queue.
+ * Auxiliary class to be used to compare cells in the priority queue.
  */
 class Comparison {
 public:
